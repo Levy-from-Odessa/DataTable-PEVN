@@ -2,6 +2,7 @@ const {Contact} = require('../models')
 
 module.exports = {
   async index (req, res) {
+    // get all contacts
     try {
       let Contacts = await Contact.findAll()
       res.send(Contacts)
@@ -12,6 +13,7 @@ module.exports = {
     }
   },
   async post (req, res) {
+    // create new contact by req data
     try {
       const contact = await Contact.create(req.body)
       console.log(req.body)
@@ -23,6 +25,7 @@ module.exports = {
     }
   },
   async update (req, res) {
+    // update item by id with req data
     try {
       console.log(req.body);
       await Contact.update(req.body, {
@@ -38,9 +41,9 @@ module.exports = {
     }
   },
   async delete (req, res) {
+    // delete item by id 
     try {
       const id = req.params.contactId
-      console.log(id);
       const contact = await Contact.findById(id)
       contact.destroy()
       
